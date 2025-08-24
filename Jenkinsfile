@@ -38,7 +38,7 @@ pipeline {
         withCredentials([file(credentialsId: 'kubernetes', variable: 'KUBECONFIG')]) {
           sh """
           kubectl --kubeconfig=$KUBECONFIG set image deployment/vikas vikas=${dockerimagename}:${BUILD_NUMBER} --record || \
-          kubectl --kubeconfig=$KUBECONFIG apply -f deployment.yaml
+          kubectl --kubeconfig=$KUBECONFIG apply -f deployment.yml
           """
         }
       }
