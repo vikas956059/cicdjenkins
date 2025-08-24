@@ -20,7 +20,7 @@ pipeline {
     stage('push image') {
       environment {
        registryCredential = 'dockerhub'
-       }
+       
       steps{
         script{
            docker.withRegistry('https://registry.hub.docker.com',registryCredential) {
@@ -29,6 +29,18 @@ pipeline {
            }
          }
        }
-    }       
-   }    
-  }   
+      }
+     }
+    stage('Deploy'){
+     steps{
+       withCredentials([file(credentailsId: 'kubernetes', variable: 'KUBERNETES')]) {
+        sh """
+        kubectl --kubeconfig=$KUBERNETES set image deployment/vikas vikas=${dockerimagename}:${BUILD_NUMBER} --record || \
+        kubectl --kubeconfig=$KUBERNETES apply -f deployment.yaml
+        """
+       }
+      }
+     }
+
+   }
+  }
