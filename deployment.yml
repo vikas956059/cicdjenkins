@@ -1,36 +1,34 @@
-kind: Deployment
 apiVersion: apps/v1
+kind: Deployment
 metadata:
- name: vikas 
+  name: vikas
 spec:
- replicas: 1
- selector:
-  matchLabels:
-   app: python
- template:
-   metadata:
-    labels:
+  replicas: 1
+  selector:
+    matchLabels:
       app: python
-   spec:
-     - name: pyhton
-       image: vikas956059/python:latest
-       ports:
-         - conatinerPort: 80
+  template:
+    metadata:
+      labels:
+        app: python
+    spec:
+      containers:
+      - name: vikas   # container name must match Jenkinsfile
+        image: vikas956059/python:latest
+        ports:
+        - containerPort: 80
 
 ---
 apiVersion: v1
 kind: Service
 metadata:
- name: svc
+  name: svc
 spec:
-  ports:
-  -  port: 80
-     targetPort: 80
-     nodePort: 31000
-  type: NodePort
-  selector: 
+  selector:
     app: python
+  type: NodePort
+  ports:
+  - port: 80
+    targetPort: 80
+    nodePort: 31000
 
-
-       
- 
