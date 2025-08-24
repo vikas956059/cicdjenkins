@@ -19,11 +19,11 @@ pipeline {
      }
     stage('push image') {
       environment {
-       registryCredentail = 'dockerhublogin'
+       registryCredential = 'dockerhublogin'
        }
       steps{
         script{
-           docker.withRegistry('https://registry.hub.docker.com',registryCredentail) {
+           docker.withRegistry('https://registry.hub.docker.com',registryCredential) {
 
            dockerImage.push("latest")
            }
