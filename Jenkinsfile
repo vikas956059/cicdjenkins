@@ -1,5 +1,5 @@
 pipeline {
-  enviroment {
+  environment {
    dockerimagename= "vikas956059/python"
    dockerImage = ""
    }
@@ -18,7 +18,7 @@ pipeline {
       }
      }
     stage('push image') {
-      enviroment {
+      environment {
        registryCredentail = 'dockerhublogin'
        }
       steps{
