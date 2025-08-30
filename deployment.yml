@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: vikas   # container name must match Jenkinsfile
-        image: vikas956059/python:BUILD_NUMBER
+        image: vikas956059/python:latest
         ports:
         - containerPort: 80
 
