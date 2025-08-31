@@ -41,7 +41,7 @@ pipeline {
           sh """
           set -e
           echo "deployment update"
-          kubectl --kubeconfig=$KUBECONFIG set image deployment/vikas vikas=${dockerimagename}:INVALID_NUMBER --record || \
+          kubectl --kubeconfig=$KUBECONFIG set image deployment/vikas vikas=${dockerimagename}:INVALID_NUMBER --record 
           kubectl --kubeconfig=$KUBECONFIG rollout status deployment/vikas
           """
           }
