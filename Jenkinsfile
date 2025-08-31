@@ -40,11 +40,12 @@ pipeline {
            try {
           sh """
           echo "deployment update"
-          kubectl --kubeconfig=$KUBECONFIG set image deployment/vikas vikas=${dockerimagename}:${BUILD_NUMBER} --record || \
+          kubectl --kubeconfig=$KUBECONFIG set image deployment/vikas vikas=${dockerimagename}:INVALID_NUMBER --record || \
           kubectl --kubeconfig=$KUBECONFIG rollout status deployment/vikas
           """
           }
           catch (err) {
+           echo "deployment failed! go to rollback"
            sh "kubectl --kubeconfig=$KUBECONFIG rollout undo deployment/vikas"
           }
         }
