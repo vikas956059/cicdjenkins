@@ -49,7 +49,7 @@ pipeline {
            sh """
            set -e
            echo "deployment failed! go to rollback"
-           "kubectl --kubeconfig=$KUBECONFIG rollout undo deployment/vikas"
+           kubectl --kubeconfig=$KUBECONFIG rollout undo deployment/vikas
            """
           }
         }
