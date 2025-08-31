@@ -46,9 +46,11 @@ pipeline {
           """
           }
           catch (err) {
+           sh """
            set -e
            echo "deployment failed! go to rollback"
-           sh "kubectl --kubeconfig=$KUBECONFIG rollout undo deployment/vikas"
+           "kubectl --kubeconfig=$KUBECONFIG rollout undo deployment/vikas"
+           """
           }
         }
       }
