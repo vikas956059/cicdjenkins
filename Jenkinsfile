@@ -45,7 +45,7 @@ pipeline {
           """
           }
           catch (err) {
-           sh kubectl --kubeconfig=$KUBECONFIG rollout undo deployment/vikas
+           sh "kubectl --kubeconfig=$KUBECONFIG rollout undo deployment/vikas"
           }
         }
       }
